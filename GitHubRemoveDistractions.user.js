@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Remove Distractions
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Remove all the GitHub distractions to get concentrated on what's really important
 // @author       GabryB03
 // @match        https://www.github.com/*
@@ -15,49 +15,32 @@
 (function()
 {
     'use strict';
+    const css =
+    `
+        .AppHeader-actions, notification-indicator, deferred-side-panel[data-url='/_side-panels/global'] { display: none !important; visibility: hidden !important; }
+    `;
+    const head = document.head || document.getElementsByTagName('head')[0];
+    const styleElement = document.createElement('style');
+    styleElement.type = 'text/css';
+    styleElement.innerHTML = css;
+    head.appendChild(styleElement);
 
     function asyncLoop()
     {
         try
         {
-            var userElement = document.getElementsByClassName("AppHeader-user")[0];
+            var dashboardElement = document.getElementsByClassName("AppHeader-context-item-label  ")[0];
 
-            if (userElement != null && userElement != undefined)
+            if (dashboardElement != null && dashboardElement != undefined)
             {
-                var dashboardElement = document.getElementsByClassName("AppHeader-context-item-label  ")[0];
-
-                if (dashboardElement != null && dashboardElement != undefined)
+                if (dashboardElement.innerText == "Dashboard")
                 {
-                    if (dashboardElement.innerText == "Dashboard")
+                    var applicationElement = document.getElementsByClassName("application-main")[0];
+
+                    if (applicationElement != null && applicationElement != undefined)
                     {
-                        var applicationElement = document.getElementsByClassName("application-main")[0];
-    
-                        if (applicationElement != null && applicationElement != undefined)
-                        {
-                            applicationElement.remove();
-                        }
+                        applicationElement.remove();
                     }
-                }
-    
-                var actionsElement = document.getElementsByClassName("AppHeader-actions")[0];
-    
-                if (actionsElement != null && actionsElement != undefined)
-                {
-                    actionsElement.remove();
-                }
-
-                var notificationsElement = document.querySelector("notification-indicator");
-
-                if (notificationsElement != null && notificationsElement != undefined)
-                {
-                    notificationsElement.remove();
-                }
-
-                var sidepanelElement = document.querySelector("deferred-side-panel[data-url='/_side-panels/global']");
-
-                if (sidepanelElement != null && sidepanelElement != undefined)
-                {
-                    sidepanelElement.remove();
                 }
             }
         }
