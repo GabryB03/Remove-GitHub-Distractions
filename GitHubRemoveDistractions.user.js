@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Remove Distractions
 // @namespace    http://tampermonkey.net/
-// @version      1.3
+// @version      1.4
 // @description  Remove all the GitHub distractions to get concentrated on what's really important
 // @author       GabryB03
 // @match        https://www.github.com/*
@@ -14,7 +14,6 @@
 
 (function()
 {
-    'use strict';
     var css = ".AppHeader-actions,notification-indicator,deferred-side-panel[data-url='/_side-panels/global']{display:none!important;visibility:hidden!important;}";
 
     if (window.location.href == 'https://github.com/' || window.location.href.startsWith("https://github.com/?"))
