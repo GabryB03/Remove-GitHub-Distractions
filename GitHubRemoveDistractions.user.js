@@ -7,8 +7,8 @@
 // @match        https://www.github.com/*
 // @match        https://github.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=github.com
-// @updateURL    https://github.com/GabryB03/Remove-GitHub-Distractions/raw/main/RemoveGitHubDistractions.user.js
-// @downloadURL  https://github.com/GabryB03/Remove-GitHub-Distractions/raw/main/RemoveGitHubDistractions.user.js
+// @updateURL    https://github.com/GabryB03/Remove-GitHub-Distractions/raw/main/GitHubRemoveDistractions.user.js
+// @downloadURL  https://github.com/GabryB03/Remove-GitHub-Distractions/raw/main/GitHubRemoveDistractions.user.js
 // @grant        none
 // ==/UserScript==
 
