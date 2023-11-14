@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Remove Distractions
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Remove all the GitHub distractions to get concentrated on what's really important
 // @author       GabryB03
 // @match        https://www.github.com/*
@@ -15,22 +15,11 @@
 (function()
 {
     'use strict';
-    var css = "";
+    var css = ".AppHeader-actions,notification-indicator,deferred-side-panel[data-url='/_side-panels/global']{display:none!important;visibility:hidden!important;}";
 
-    if (window.location.href == 'https://github.com/' || window.location.href.includes("dashboard"))
+    if (window.location.href == 'https://github.com/' || window.location.href.startsWith("https://github.com/?"))
     {
-        css =
-        `
-            .application-main, .AppHeader-actions, notification-indicator, deferred-side-panel[data-url='/_side-panels/global'] { display: none !important; visibility: hidden !important; }
-        `;
-
-    }
-    else
-    {
-        css =
-        `
-            .AppHeader-actions, notification-indicator, deferred-side-panel[data-url='/_side-panels/global'] { display: none !important; visibility: hidden !important; }
-        `;
+        css = ".application-main," + css;
     }
 
     const head = document.head || document.getElementsByTagName('head')[0];
